@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercices</title>
+</head>
+<body>
+    <div id="output"></div> <!-- Div pour afficher le tableau de l'exercice 1 -->
+    <div id="output2"></div> <!-- Div pour afficher le résultat de l'exercice 2 -->
+    <div id="output3"></div> <!-- Div pour afficher le résultat de l'exercice 3 -->
+    <script LANGUAGE="Javascript" SRC="javascript_test_je1.js"></script>
+    <script LANGUAGE="Javascript" SRC="bove_kylian_test_javascript_algo_ex1.js"></script>
+    <script LANGUAGE="Javascript" SRC="bove_kylian_test_javascript_algo_ex2.js"></script>
+    <script LANGUAGE="Javascript" SRC="bove_kylian_test_javascript_algo_ex3.js"></script>
+    <style>
+        .sudoku-cell {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        /* Bordure en bas de chaque ensemble de 3 lignes */
+        .sudoku tr:nth-child(3n) td {
+            border-bottom: 2px solid #000; 
+        }
+
+        /* Bordure à droite de chaque ensemble de 3 colonnes */
+        .sudoku td:nth-child(3n) {
+            border-right: 2px solid #000; 
+        }
+        /* Bordure en haut de la première ligne */
+        .sudoku tr:first-child td {
+            border-top: 2px solid #000;
+        }
+
+        /* Bordure à gauche de la première colonne */
+        .sudoku td:first-child {
+            border-left: 2px solid #000;
+        }
+
+        
+        
+
+    </style>
+    <script>
+        /**
+         * Exercice 1
+         **/
+
+         var outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = "<h2>Exercice 1</h2>";
+
+        copyTable(array_number, to_verify); // Appel de la fonction pour copier les données
+        displayTable(to_verify); // Appel de la fonction pour afficher le tableau
+
+        /**
+         * Exercice 2
+         **/
+
+        // Tableau de nombres à vérifier
+        var numbersToCheck = [4, 9, 5, 2, 7, 3, 6, 8, 1];
+
+        // Affichage du tableau avant validation dans la div "output2" de la page HTML
+        var outputDiv2 = document.getElementById('output2');
+        outputDiv2.innerHTML = "<h2>Exercice 2</h2>";
+        outputDiv2.innerHTML += "Tableau à vérifier : <br>" + numbersToCheck.join(" ")+ "<br>";
+
+        // Appel de la fonction pour vérifier la validité du tableau
+        var isValid = isTableValid(numbersToCheck);
+        
+        // Affichage du résultat en fonction de la validation
+        if (isValid) {
+            outputDiv2.innerHTML += "Le tableau est valide.";
+        } else {
+            outputDiv2.innerHTML += "Le tableau n'est pas valide.";
+        }
+
+        /**
+         * Exercice 3
+         **/
+
+        // Affichage du résultat dans la div "output3" de la page HTML
+        var outputDiv3 = document.getElementById('output3');
+        outputDiv3.innerHTML += "<h2>Exercice 3</h2>";
+
+        displayTable2(to_verify);
+
+        // Appel des fonctions pour vérifier les lignes, colonnes et régions
+        checkRows();
+        checkColumns();
+        checkRegions();
+
+        if (anomalies.length === 0) {
+            outputDiv3.innerHTML += "The table is correct";
+        } else {
+            // Crée un tableau HTML pour afficher les anomalies
+            var tableHTML = '<table border="1"><tr><th>Anomalies</th></tr>';
+            for (var i = 0; i < anomalies.length; i++) {
+                tableHTML += '<tr><td>' + anomalies[i] + '</td></tr>';
+            }
+            tableHTML += '</table>';
+            outputDiv3.innerHTML += tableHTML;
+        }
+    </script>
+</body>
+</html>
